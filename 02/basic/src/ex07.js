@@ -13,7 +13,7 @@ export default function example() {
 
   // Scene
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog("black", 3, 7);
+  scene.fog = new THREE.Fog("red", 3, 7);
 
   // Camera
   // Perspective Camera(원근 카메라)
