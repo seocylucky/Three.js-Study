@@ -70,8 +70,8 @@ export default function example() {
     defaultMaterial,
     defaultMaterial,
     {
-      friction: 0.5,
-      restitution: 0.5,
+      friction: 0.01,
+      restitution: 0.9,
     }
   );
   cannonWorld.defaultContactMaterial = defaultContactMaterial;
@@ -146,13 +146,32 @@ export default function example() {
   function checkIntersects() {
     raycaster.setFromCamera(mouse, camera);
 
-    const intersects = raycaster.intersectObject(scene.children);
+    const intersects = raycaster.intersectObjects(scene.children);
     console.log(intersects[0].object.name);
+
+    for (const item of intersects) {
+      if (item.object.cannonBody) {
+        item.object.cannonBody.applyForce(
+          new CANNON.Vec3(0, 0, -50),
+          new CANNON.Vec3(0, 0, 0)
+        );
+        break;
+      }
+    }
+
+    // if (intersects[0].object.cannonBody) {
+    //   intersects[0].object.cannonBody.applyForce(
+    //     new CANNON.Vec3(0, 0, -100),
+    //     new CANNON.Vec3(0, 0, 0)
+    //   );
+    // }
   }
 
   // 이벤트
   window.addEventListener("resize", setSize);
   canvas.addEventListener("click", (e) => {
+    if (preventDragClick.mouseMoved) return;
+
     mouse.x = (e.clientX / canvas.clientWidth) * 2 - 1;
     mouse.y = -((e.clientY / canvas.clientHeight) * 2 - 1);
 

@@ -44,8 +44,8 @@ export default function example() {
   const gltfLoader = new GLTFLoader();
   let mixer;
 
-  gltfLoader.load("/models/ilbuni.glb", (gltf) => {
-    // console.log(gltf.scene.children[0]);
+  gltfLoader.load("/models/model.glb", (gltf) => {
+    console.log(gltf.scene.children[0]);
     const ilbuniMesh = gltf.scene.children[0];
     scene.add(ilbuniMesh);
 
