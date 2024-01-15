@@ -11,9 +11,9 @@ const renderer = new THREE.WebGLRenderer({
   canvas,
   antialias: true,
 });
+renderer.shadowMap.enabled = true;
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
-renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 // Scene
@@ -34,9 +34,9 @@ scene.add(camera);
 const ambientLight = new THREE.AmbientLight("white", 1.5);
 scene.add(ambientLight);
 
-const spotLight = new THREE.SpotLight("white", 0.7);
-spotLight.position.set(0, 150, 100);
+const spotLight = new THREE.SpotLight("white", 100000);
 spotLight.castShadow = true;
+spotLight.position.set(0, 150, 100);
 spotLight.shadow.mapSize.width = 1024;
 spotLight.shadow.mapSize.height = 1024;
 spotLight.shadow.camera.near = 1;
